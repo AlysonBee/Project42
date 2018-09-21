@@ -1,0 +1,78 @@
+
+
+./flags 
+
+CHANNEL FLAGS:
+	       o - give/take channel operator privileges;
+           p - private channel flag;
+           s - secret channel flag;
+           i - invite-only channel flag;
+           t - topic settable by channel operator only flag;
+           n - no messages to channel from clients on the outside;
+           m - moderated channel;
+           l - set the user limit to channel;
+		   b - set a ban mask to keep users out;
+           v - give/take the ability to speak on a moderated channel;
+           k - set a channel key (password)
+		   
+CLIENT FLAGS:
+			i - marks a users as invisible;
+           s - marks a user for receipt of server notices;
+           w - user receives wallops;
+           o - operator flags.
+
+/Examples:
+
+	Use of channel Modes:
+MODE #Finnish +v Wiz            ; Allow WiZ to speak on #Finnish.
+
+MODE #Fins -s                   ; Removes 'secret' flag from channel
+                                #Fins.
+
+MODE #42 +k oulu                ; Set the channel key to "oulu".
+
+MODE #eu-opers +l 10            ; Set the limit for the number of users
+                                on channel to 10.
+
+MODE &oulu +b                   ; list ban masks set for channel.
+
+MODE &oulu +b *!*@*             ; prevent all users from joining.
+
+MODE &oulu +b *!*@*.edu         ; prevent any user from a hostname
+                                matching *.edu from joining.
+
+        Use of user Modes:
+
+:MODE WiZ -w                    ; turns reception of WALLOPS messages
+                                off for WiZ.
+
+:Angel MODE Angel +i            ; Message from Angel to make themselves
+                                invisible.
+
+MODE WiZ -o                     ; WiZ 'deopping' (removing operator
+                                status).  The plain reverse of this
+                                command ("MODE WiZ +o") must not be
+                                allowed from users since would bypass
+                                the OPER command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

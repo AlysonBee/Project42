@@ -1,0 +1,5 @@
+
+
+VERSION : Displays the version number of the server
+
+usage: /VERSION

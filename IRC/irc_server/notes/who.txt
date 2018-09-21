@@ -1,0 +1,6 @@
+
+
+
+WHO : lists everyone in the client's current channel  who isn't invisible [+i]
+
+usage : /WHO 

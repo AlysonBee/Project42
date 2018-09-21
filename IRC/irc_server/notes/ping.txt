@@ -1,0 +1,7 @@
+
+
+PING : checks if a client or server is connected.
+
+usage : /PING <server>
+
+

@@ -1,0 +1,16 @@
+
+
+
+/NAMES : list all nicknames visible on all channels user can see with the 
+		 the exception of private [+p] and secret[+s] imposed on channel flags
+		 if no parameters are given, a list of all visible channels and users is 
+		 returned.
+
+Usage: /NAMES <channel> {,<channel>}
+
+/Example:
+    NAMES #twilight_zone,#42        ; list visible users on #twilight_zone
+                                   and #42 if the channels are visible to
+                                   you.
+
+   NAMES                           ; list all visible channels and users

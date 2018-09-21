@@ -1,0 +1,12 @@
+
+/LIST : list all channels and tehir topics.
+		if channel is private : channel desription is "Prv"
+
+Usage:	/LIST <channel> {,<channel>} [<server>]
+
+/example :
+
+   LIST                            ; List all channels.
+
+   LIST #twilight_zone,#42         ; List channels #twilight_zone and #42
+

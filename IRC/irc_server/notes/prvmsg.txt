@@ -1,0 +1,16 @@
+
+
+PRIVMSG : sends a private message to the users specified
+
+usage : /PRIVMSG <receiver> {<receiver>} <server> <message>
+
+example:
+
+:Angel PRIVMSG Wiz :Hello are you receiving this message ?
+                                ; Message from Angel to Wiz.
+
+PRIVMSG Angel :yes I'm receiving it !receiving it !'u>(768u+1n) .br ;
+                                Message to Angel.
+
+PRIVMSG jto@tolsun.oulu.fi :Hello !
+                                ; Message to a client on server

@@ -1,0 +1,4 @@
+
+TIME : displays the timezone of the server
+
+usage : /TIME
