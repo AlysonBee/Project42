@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   summary.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angonyam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 11:02:48 by angonyam          #+#    #+#             */
+/*   Updated: 2018/10/09 11:02:49 by angonyam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ftping.h"
 
@@ -25,7 +36,7 @@ void		print_summary(void)
 
 int			packet_loss_calculation(struct timeval starttime)
 {
-	struct timeval			current_time;
+	struct timeval		current_time;
 	long long			packet_loss;
 
 	gettimeofday(&current_time, 0);
