@@ -23,6 +23,8 @@ int		name_me(int argc, char **argv)
 	}
 	i = 1;
 	g_stats.flags = collect_flags(1, argc, argv);
+	if (strchr(g_stats.flags, 'h'))
+		help();
 	while (i < argc)
 	{
 		if (argv[i][0] != '-')

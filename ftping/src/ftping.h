@@ -117,6 +117,12 @@ int					elapsed_time_calculation(struct timeval starttime,
 		int bias);
 
 /*
+** help message just coz..
+*/
+
+void				help(void);
+
+/*
 ** end
 */
 
