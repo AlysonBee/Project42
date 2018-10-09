@@ -3,7 +3,6 @@
 
 int			unpack_msg(char *buffer, int len, char *addr)
 {
-	int			i;
 	int			header_size;
 	t_ip		*ip;
 	t_icmp		*icmp;
