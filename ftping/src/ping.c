@@ -23,7 +23,7 @@ void		timelapse(struct timeval timestamp)
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, 0);
-	printf("time=%.1f\n", (float)((current_time.tv_usec -
+	printf("time=%.2f ms\n", (float)((current_time.tv_usec -
 				timestamp.tv_usec)) / 1000);
 	g_stats.total_time += current_time.tv_usec - timestamp.tv_usec;
 }
@@ -38,11 +38,11 @@ void		ping_me(char *addr_info, struct sockaddr_in to,
 	int					rcv;
 
 	signal(SIGINT, signalhandler);
-	memset(&from, 0, sizeof(struct sockaddr_in));
+	ft_memset(&from, 0, sizeof(struct sockaddr_in));
 	packet_number = 0;
 	while (g_stats.loop)
 	{
-		memset(&echo_packet, 0, sizeof(t_icmp));
+		ft_memset(&echo_packet, 0, sizeof(t_icmp));
 		pack_msg(&echo_packet, packet_number);
 		if (sendto(ping_sockfd, &echo_packet, sizeof(t_icmp),
 			0, (struct sockaddr *)&to, sizeof(to)) == -1)

@@ -62,7 +62,7 @@ int		main(int argc, char **argv)
 	plc = name_me(argc, argv);
 	arg = argv[plc];
 	init_statistics(arg);
-	memset(&to, 0, sizeof(struct sockaddr_in));
+	ft_memset(&to, 0, sizeof(struct sockaddr_in));
 	if ((ping_sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP)) < 0)
 		error_and_exit("Error : socket()");
 	if ((addr_info = get_address_info(arg)) == NULL)

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lib.h"
 #include <sys/socket.h>
 #include <netdb.h>
 #include <stdio.h>
@@ -35,6 +36,5 @@ char	*get_address_info(char *url)
 	}
 	ip_addr = (struct sockaddr_in *)result->ai_addr;
 	inet_ntop(AF_INET, &ip_addr->sin_addr, hostname, 100);
-	printf("hostname : %s\n", hostname);
-	return (strdup(hostname));
+	return (ft_strdup(hostname));
 }
