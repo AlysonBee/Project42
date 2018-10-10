@@ -39,7 +39,7 @@ void		ping_me(char *addr_info, struct sockaddr_in to,
 
 	signal(SIGINT, signalhandler);
 	ft_memset(&from, 0, sizeof(struct sockaddr_in));
-	packet_number = 0;
+	packet_number = 1;
 	while (g_stats.loop)
 	{
 		ft_memset(&echo_packet, 0, sizeof(t_icmp));

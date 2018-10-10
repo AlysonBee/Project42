@@ -22,14 +22,14 @@ void		print_summary(void)
 		bias = 150;
 		printf("%d packets transmitted, %d received",
 		g_stats.transm, g_stats.rec);
-		printf(", 0%% packet loss ");
+		printf(", 0%% packet loss, ");
 	}
 	else
 	{
 		bias = 1150;
 		printf("%d packets transmitted, %d received",
 		packet_loss_calculation(g_stats.starttime), g_stats.rec);
-		printf(", 100%% packet loss ");
+		printf(", 100%% packet loss, ");
 	}
 	elapsed_time_calculation(g_stats.starttime, bias);
 }
@@ -57,6 +57,6 @@ int			elapsed_time_calculation(struct timeval starttime, int bias)
 	miliseconds = (long long)current_time.tv_sec -
 		(long long)starttime.tv_usec;
 	seconds = (seconds * 1000) + (miliseconds / 10000000) - bias;
-	printf(" time %lld ms\n", seconds);
+	printf("time %lld ms\n", seconds);
 	return (1);
 }
