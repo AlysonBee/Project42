@@ -41,11 +41,11 @@ all:
 
 clean:
 	make clean -C alylibc
-	rm -f obj/$(OBJ_DIR)
+	rm -f $(OBJ_DIR)
 
 fclean:
 	make fclean -C alylibc
-	rm -f obj/$(OBJ_DIR)
+	rm -f $(OBJ_DIR)
 	rm -f $(EXEC)
 
 re: fclean all
