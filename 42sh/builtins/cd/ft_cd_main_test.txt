@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd_main_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angonyam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/19 07:35:22 by angonyam          #+#    #+#             */
+/*   Updated: 2017/12/19 07:35:33 by angonyam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../shell.h"
+
+char		**ft_cd(char **env, char *test, int *val);
+
+int			main(int argc, char **argv, char **envp)
+{
+	char	*rev;
+	char	**env;
+	char	**new;
+	char	**mycd;
+	char	*str;
+	int		val;
+	char	**new_new;
+	int		count = 0;
+
+	val = 0;
+	new = ft_arraydup(envp);
+	while (++count < 10)
+	{
+		str = (char*)malloc(sizeof(char) * 1024);
+		read(0, str, 1024);
+		str = ft_strjoin(str, " ");
+		mycd = ft_strsplit(str, ' ');
+		if (ft_strstr(str, "exit"))
+			exit(1);
+		if (mycd[1] == NULL)
+			new = ft_cd(new, NULL, &val);
+		else 
+			new = ft_cd(new, mycd[1], &val);
+		int i = 0;
+		while (new[i])
+		{
+			ft_printf(" env is %s\n", new[i]);
+			i++;
+		 }	
+	//	free_2d_array((void**)mycd);
+		ft_printf("status is %d\n", val);
+		free(str);
+	}
+	free_2d_array((void**)new);
+	return (0);
+}

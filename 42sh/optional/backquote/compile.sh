@@ -1,0 +1,1 @@
+gcc -g backquotes.c ../../libft/libft.a ../../printf/libftprintf.a ../../processes/process.c ../../builtins/env/ft_env.c ../../builtins/env/ft_setenv.c ../../builtins/env/ft_setlist.c ../../builtins/env/ft_unsetenv.c  ../../builtins/exit/ft_exit.c ../../builtins/cd/*.c ../../builtins/echo/echo* back_subshell.c
