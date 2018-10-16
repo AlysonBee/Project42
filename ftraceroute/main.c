@@ -56,18 +56,18 @@ char	*user_check(int argc, char **argv)
 	if (argc != 2)
 	{
 		printf("Usage : [sudo] %s <hostname/IP>\n",
-		argv[1]);
+		argv[0]);
 		exit(1);
 	}
 	if (getuid() != 0)
 	{
 		printf("Notice : you must be sudo to run\n");
-		printf("Usage : [sudo] %s <hostname/IP>\n", argv[1]);
+		printf("Usage : [sudo] %s <hostname/IP>\n", argv[0]);
 		exit(1);
 	}
 	if (strcmp(argv[1], "-h") == 0)
 	{
-		printf("Usage : [sudo] %s <hostname/IP>\n", argv[1]);
+		printf("Usage : [sudo] %s <hostname/IP>\n", argv[0]);
 		exit(1);
 	}
 	return (argv[1]);
@@ -97,16 +97,16 @@ char	*get_address_info(char *url)
 void	elapsedtime(struct timeval starttime)
 {
 	struct timeval 	currtime;
-	long long	curr;
-	long long 	start;
+	double 		curr;
+	double	 	start;
+	double		diff;
 
 	gettimeofday(&currtime, 0);
-	curr = currtime.tv_sec - starttime.tv_sec;
-	if (curr == 1)
-		starttime.tv_usec /= 10;
-	start = currtime.tv_usec - starttime.tv_usec;
-	printf("%lld.", curr);
-	printf("%lld ms\n", start);
+	start = (double)starttime.tv_sec * 1000000 + (double)starttime.tv_usec;
+	curr = (double)currtime.tv_sec * 1000000 + (double)currtime.tv_usec;
+	diff = curr - start;
+	diff /= 1000;
+	printf("%.3f ms \n", diff);
 }
 
 void	unpack_response(int pck_ct, char recv_buff[], char *initial_address,
@@ -117,17 +117,20 @@ void	unpack_response(int pck_ct, char recv_buff[], char *initial_address,
 
 	iphdr = (struct ip *)recv_buff;
 	address = inet_ntoa(iphdr->ip_src);
-	if (strcmp(address, "0.0.0.0") == 0)
-	{
-		printf("*\n");
-		return ;
-	}
 	printf("%d %s\t\t", pck_ct, address);
 	elapsedtime(starttime);
 	if (strcmp(address, initial_address) == 0)
+	{
+		free(initial_address);
 		exit(1);
+	}
 }
 
+void	zero_buffer_and_fromlen(char send_buff[], int *fromlen)
+{
+	bzero(send_buff, 1024);
+	*fromlen = 1;
+}
 
 void	tracer_tong(char *addr_info, struct sockaddr_in to, 
 	int sockfd)
@@ -138,11 +141,10 @@ void	tracer_tong(char *addr_info, struct sockaddr_in to,
 	int			fromlen;
 	struct timeval		starttime;
 
-	fromlen = 1;
-	packet_count = 1;
-	while (packet_count < 30)
+	packet_count = 0;
+	while (++packet_count < 30)
 	{
-		bzero(send_buff, 1024);
+		zero_buffer_and_fromlen(send_buff, &fromlen);
 		memset(&from , 0, sizeof(struct sockaddr_in));
 		pack_msg(packet_count, addr_info, send_buff);
 		if (sendto(sockfd, send_buff,
@@ -150,14 +152,14 @@ void	tracer_tong(char *addr_info, struct sockaddr_in to,
 		(struct sockaddr *)&to, sizeof(to)) == -1)
 			error_and_exit("Error : sendto()");
 		gettimeofday(&starttime, 0);
-		if (recvfrom(sockfd, send_buff, BUFSIZ, 0, 
+		if (recvfrom(sockfd, send_buff, BUFSIZ, 0,  
 		(struct sockaddr *)&from , &fromlen) == -1)
 			printf("%d *\n", packet_count);
 		else
-			unpack_response(packet_count, send_buff, addr_info,
+			unpack_response(packet_count, send_buff, addr_info, 
 		starttime);
-		packet_count++;
 	}
+	free(addr_info);
 }
 
 
