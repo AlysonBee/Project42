@@ -22,6 +22,7 @@ int		check_lock_file(void)
 			return (-1);
 		}
 	}
+	closedir(dp);
 	return (1);
 }
 

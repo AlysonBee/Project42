@@ -10,10 +10,16 @@ t_proc		*accept_sockfd(struct sockaddr_in addr, int sockfd, t_proc *id_list)
 	socklen_t	value;
 	int			acceptsock;
 
+	if (g_process_count == 3)
+	{
+		printf("Notice: Max number of clients reached\n");
+		return (id_list);
+	}
 	value = sizeof(addr);
 	acceptsock = accept(sockfd, (struct sockaddr *)&addr, (socklen_t *)&value);
 	id_list = process_list_handling(id_list, acceptsock);
 	printf("process added\n");
+	g_process_count++;
 	return (id_list);	
 }
 
