@@ -1,4 +1,4 @@
-FROM debian:8
+3FROM debian:8
 WORKDIR /home/ts3
 RUN apt-get update && apt-get install -y bzip2 wget nano
 RUN adduser --disabled-login teamspeak; exit 0
